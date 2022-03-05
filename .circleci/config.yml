@@ -7,8 +7,7 @@ jobs:
     working_directory: ~/project/terraform
     steps:
       - checkout
-      - plan:
-          run: |
+      - run: |
           terraform init
           terraform plan
   apply:
@@ -16,8 +15,7 @@ jobs:
     working_directory: ~/project/terraform
     steps:
       - checkout
-      - plan:
-          run: |
+      - run: |
           terraform init
           terraform apply
 
