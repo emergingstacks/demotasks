@@ -1,23 +1,25 @@
 version: 2.1
 executors:
-  terraform: zenika/terraform-aws-cli:latest
+  infra-agent:
+    docker:
+      - image: zenika/terraform-aws-cli:latest
 jobs:
   plan:
-    executor: terraform
+    executor: infra-agent
     working_directory: ~/project/terraform
     steps:
       - checkout
-      - run: |
-          terraform init
-          terraform plan
+      - run:
+          name: terraform plan
+          command: terraform init && terraform plan
   apply:
-    executor: terraform
+    executor: infra-agent
     working_directory: ~/project/terraform
     steps:
       - checkout
-      - run: |
-          terraform init
-          terraform apply
+      - run:
+          name: terraform apply
+          command: terraform init && terraform apply
 
 workflows:
   infrastructure:
