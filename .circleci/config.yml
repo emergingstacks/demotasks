@@ -49,9 +49,5 @@ workflows:
 
   ecr:
     jobs:
-      - approval-gate:
-          type: approval
       - push_to_ecr:
           context: demo
-          requires:
-            - approval-gate
