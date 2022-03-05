@@ -5,7 +5,7 @@ executors:
       - image: zenika/terraform-aws-cli:latest
   python:
     docker:
-      - image: python:alpine
+      - image: docker
 jobs:
   plan:
     executor: infra-agent
@@ -23,12 +23,18 @@ jobs:
           command: cd terraform && terraform init && terraform apply -auto-approve
 
   push_to_ecr:
-    executor: python
+    executor: docker
     steps:
       - checkout
       - run:
           name: install git
-          command: apk update && apk add git
+          command: apt update && apt install python3 -y
+      - run:
+          name: install awscli
+          command: |
+            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+            unzip awscliv2.zip
+            ./aws/install
       - run:
           name: Build and push image to ecr
           command: cd scripts && pip3 install -r requirements.txt && python3 upload_image.py
