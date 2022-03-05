@@ -23,7 +23,7 @@ jobs:
           command: cd terraform && terraform init && terraform apply -auto-approve
 
   push_to_ecr:
-    executor: docker
+    executor: python
     steps:
       - checkout
       - run:
