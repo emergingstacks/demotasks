@@ -1,0 +1,36 @@
+version: 2.1
+executors:
+  terraform: zenika/terraform-aws-cli:latest
+jobs:
+  plan:
+    executor: terraform
+    working_directory: ~/project/terraform
+    steps:
+      - checkout
+      - plan:
+          run: |
+          terraform init
+          terraform plan
+  apply:
+    executor: terraform
+    working_directory: ~/project/terraform
+    steps:
+      - checkout
+      - plan:
+          run: |
+          terraform init
+          terraform apply
+
+workflows:
+  infrastructure:
+    jobs:
+      - plan:
+          context: demo
+      - approval-gate:
+          type: approval
+          requires:
+            - plan
+      - apply:
+          context: demo
+          requires:
+            - approval-gate
