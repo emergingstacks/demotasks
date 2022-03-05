@@ -1,5 +1,5 @@
-resource "aws_ecr_repository" "demorepo" {
-  name                 = "demorepo"
+resource "aws_ecr_repository" "democi" {
+  name                 = "democi"
   image_tag_mutability = "MUTABLE"
 
   image_scanning_configuration {
