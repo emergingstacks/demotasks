@@ -17,7 +17,7 @@ jobs:
       - checkout
       - run:
           name: terraform apply
-          command: cd terraform && terraform init && terraform apply
+          command: cd terraform && terraform init && terraform apply -auto-approve
 
 workflows:
   infrastructure:
