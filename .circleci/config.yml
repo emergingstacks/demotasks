@@ -6,20 +6,18 @@ executors:
 jobs:
   plan:
     executor: infra-agent
-    working_directory: ~/project/terraform
     steps:
       - checkout
       - run:
           name: terraform plan
-          command: terraform init && terraform plan
+          command: cd terraform && terraform init && terraform plan
   apply:
     executor: infra-agent
-    working_directory: ~/project/terraform
     steps:
       - checkout
       - run:
           name: terraform apply
-          command: terraform init && terraform apply
+          command: cd terraform && terraform init && terraform apply
 
 workflows:
   infrastructure:
