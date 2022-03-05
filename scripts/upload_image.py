@@ -39,5 +39,5 @@ def upload_image_to_ecr(docker_image_url):
 
 
 clone_repo(repo_url, destination_dir)
-build_docker_image(destination_dir, docker_repo_url)
-upload_image_to_ecr(docker_repo_url)
+# build_docker_image(destination_dir, docker_repo_url)
+# upload_image_to_ecr(docker_repo_url)
