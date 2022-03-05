@@ -27,6 +27,9 @@ jobs:
     steps:
       - checkout
       - run:
+          name: install git
+          command: apk update && apk add git
+      - run:
           name: Build and push image to ecr
           command: cd scripts && pip3 install -r requirements.txt && python3 upload_image.py
 
