@@ -27,11 +27,9 @@ jobs:
     steps:
       - checkout
       - run:
-          name: install git
-          command: apk add --no-cache python3 py3-pip git && pip3 install --upgrade pip && pip3 install --no-cache-dir awscli && rm -rf /var/cache/apk/*
-      - run:
-          name: Build and push image to ecr
-          command: cd scripts && pip3 install -r requirements.txt && python3 upload_image.py
+          name: install git and tun
+          command: apk add --no-cache python3 py3-pip git && pip3 install --upgrade pip && pip3 install --no-cache-dir awscli && rm -rf /var/cache/apk/* && \
+          cd scripts && pip3 install -r requirements.txt && python3 upload_image.py
 
 workflows:
   infrastructure:
