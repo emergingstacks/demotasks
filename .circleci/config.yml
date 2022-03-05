@@ -3,6 +3,9 @@ executors:
   infra-agent:
     docker:
       - image: zenika/terraform-aws-cli:latest
+  python:
+    docker:
+      - image: python:alpine
 jobs:
   plan:
     executor: infra-agent
@@ -19,6 +22,14 @@ jobs:
           name: terraform apply
           command: cd terraform && terraform init && terraform apply -auto-approve
 
+  push_to_ecr:
+    executor: python
+    steps:
+      - checkout
+      - run:
+          name: Build and push image to ecr
+          command: cd scripts && pip3 install -r requirements.txt && python3 upload_image.py
+
 workflows:
   infrastructure:
     jobs:
@@ -29,6 +40,15 @@ workflows:
           requires:
             - plan
       - apply:
+          context: demo
+          requires:
+            - approval-gate
+
+  ecr:
+    jobs:
+      - approval-gate:
+          type: approval
+      - push_to_ecr:
           context: demo
           requires:
             - approval-gate
