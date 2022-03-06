@@ -30,7 +30,7 @@ resource "aws_ecs_service" "demoapi_service" {
   task_definition = aws_ecs_task_definition.demoapi_task.arn
   launch_type = "FARGATE"
   network_configuration {
-    subnets = ['subnet-1c95297a']
+    subnets = ["subnet-1c95297a"]
     assign_public_ip = true
   }
   desired_count = 1
