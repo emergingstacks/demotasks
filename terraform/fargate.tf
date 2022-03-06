@@ -7,7 +7,7 @@ resource "aws_ecs_task_definition" "demoapi_task" {
    memory = "512"
    requires_compatibilities = ["FARGATE"]
    network_mode = "awsvpc"
-  execution_role_arn = aws_iam_role.sun_api_task_execution_role.name
+  execution_role_arn = aws_iam_role.sun_api_task_execution_role.arn
    container_definitions = <<EOF
 [
 {
