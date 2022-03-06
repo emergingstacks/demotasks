@@ -42,7 +42,7 @@ resource "aws_ecs_service" "demoapi_service" {
 
 resource "aws_security_group" "demici-sg" {
   name        = "demici-sg"
-  vpc_id      = aws_vpc.default.id
+  vpc_id      = data.aws_vpc.default_vpc.id
 
   ingress {
     protocol        = "-1"
