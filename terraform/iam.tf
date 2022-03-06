@@ -14,8 +14,6 @@ data "aws_iam_policy_document" "ecs_task_assume_role" {
   }
 }
 
-# Normally we'd prefer not to hardcode an ARN in our Terraform, but since this is
-# an AWS-managed policy, it's okay.
 data "aws_iam_policy" "ecs_task_execution_role" {
   arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
