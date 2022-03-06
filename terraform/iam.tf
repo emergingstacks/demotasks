@@ -1,5 +1,5 @@
 resource "aws_iam_role" "demo_api_task_execution_role" {
-  name               = "sun-api-task-execution-role"
+  name               = "demo-api-task-execution-role"
   assume_role_policy = data.aws_iam_policy_document.ecs_task_assume_role.json
 }
 
