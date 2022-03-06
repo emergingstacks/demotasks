@@ -2,7 +2,7 @@ resource "aws_ecs_cluster" "demo-ecs-cluster" {
   name = "ecs-cluster-for-demo"
 }
 resource "aws_ecs_task_definition" "demoapi_task" {
-   family = aws_ecs_service.demoapi_service.name
+   family = "ecs-task-def-demo"
    cpu = "256"
    memory = "512"
    requires_compatibilities = ["FARGATE"]
@@ -25,6 +25,7 @@ EOF
 
 resource "aws_ecs_service" "demoapi_service" {
   name            = "demoapi"
+  cluster = aws_ecs_cluster.demo-ecs-cluster.id
   task_definition = aws_ecs_task_definition.demoapi_task.arn
   launch_type = "FARGATE"
   desired_count = 1
