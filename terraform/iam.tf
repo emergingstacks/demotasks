@@ -1,4 +1,4 @@
-resource "aws_iam_role" "sun_api_task_execution_role" {
+resource "aws_iam_role" "demo_api_task_execution_role" {
   name               = "sun-api-task-execution-role"
   assume_role_policy = data.aws_iam_policy_document.ecs_task_assume_role.json
 }
@@ -22,6 +22,6 @@ data "aws_iam_policy" "ecs_task_execution_role" {
 
 # Attach the above policy to the execution role.
 resource "aws_iam_role_policy_attachment" "ecs_task_execution_role" {
-  role       = aws_iam_role.sun_api_task_execution_role.name
+  role       = aws_iam_role.demo_api_task_execution_role.name
   policy_arn = data.aws_iam_policy.ecs_task_execution_role.arn
 }
