@@ -21,7 +21,7 @@ jobs:
       - run:
           name: terraform apply
           command: cd terraform && terraform init && terraform apply -auto-approve
-  apply:
+  destroy:
     executor: infra-agent
     steps:
       - checkout
