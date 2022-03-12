@@ -21,10 +21,6 @@ jobs:
       - run:
           name: terraform apply
           command: cd terraform && terraform init && terraform apply -auto-approve
-  destroy:
-    executor: infra-agent
-    steps:
-      - checkout
       - run:
           name: terraform destroy
           command: cd terraform && terraform init && terraform destroy -auto-approve
@@ -50,14 +46,6 @@ workflows:
           context: demo
           requires:
             - approval-gate
-      - destroy-approval-gate:
-          requires:
-            - apply
-      - destroy:
-          context: demo
-          requires:
-            - destroy-approval-gate
-
 
   ecr:
     jobs:
