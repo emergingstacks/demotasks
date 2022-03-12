@@ -56,7 +56,7 @@ workflows:
       - destroy:
           context: demo
           requires:
-              - destroy-approval-gate
+            - destroy-approval-gate
 
 
   ecr:
