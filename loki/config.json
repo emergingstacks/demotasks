@@ -1,0 +1,5 @@
+{
+  "bucket": "ingresslogs-**",
+  "interval_in_minutes": "30",
+  "loki_base_url": "<url>"
+}
