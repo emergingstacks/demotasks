@@ -99,6 +99,9 @@ except:
 # Separate file creation as per ingress name
 # Uploading those files under respective s3 directory
 for proxy_list in proxy_upstream_list:
+    logging.info("-----------------------------------------------------------")
+    if not proxy_list:
+        continue
     logging.info("Processing logs for {}".format(proxy_list))
     for i in response['data']['result']:
         if str(i['stream']['proxy_upstream_name']).strip("[]") == proxy_list:
@@ -108,7 +111,6 @@ for proxy_list in proxy_upstream_list:
     })
     date_time = now.strftime("%Y-%m-%d-%H-%M-%S")
     filename = "{}-{}.log".format(proxy_list, date_time)
-    logging.info("-----------------------------------------------------------")
     logging.info("Writing the logs of {} in {}".format(proxy_list, filename))
     dump_to_json(filename, temp_list2)
     upload_to_s3(filename, proxy_list, datetime.today())

@@ -1,5 +1,5 @@
 {
-  "bucket": "ingresslogs-**",
+  "bucket": "ingresslogs-hk91",
   "interval_in_minutes": "30",
-  "loki_base_url": "<url>"
+  "loki_base_url": "https://loki.adctrl.cloud"
 }
